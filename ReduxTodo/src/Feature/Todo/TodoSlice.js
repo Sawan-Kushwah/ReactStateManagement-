@@ -11,7 +11,7 @@ export const TodoSlice = createSlice({
         addTodo: (state, action) => {
             const newTodo = {
                 id: nanoid(),
-                text: action.payload,
+                text: action.payload, //it is an object so we can access multiple value as (action.payload.text ,)
             }
             state.todos.push(newTodo);
         },
