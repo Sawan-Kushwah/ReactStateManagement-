@@ -140,6 +140,8 @@ inputField.addEventListener('input', debouncing(() => fetchData(url), 1000)); //
 inputField.addEventListenor('input' , () => fetchData(url)) // ❌
 
 ```
+React life cycle of class component 
+![image](https://github.com/user-attachments/assets/19a8e315-545e-4d97-ab0c-a1fd01c35977)
 
 
 
