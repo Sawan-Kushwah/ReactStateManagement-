@@ -2,6 +2,10 @@ Babel is used to transpiler the modern javascript to old browser javascript whic
 Babel take the script file to map source and then convert the jsx to , React.createElement() this convert this to Tree like structure then this structure has been taken by , 
 React.render method (createElement , root) then it inject that js to docs by doing document.createElement('h1')
 
+``` javascript 
+React jsx -> Map source (map the jsx to converted script) -> Script (this browser will understand) -> This script get inject to Document using React.render(react.createElement , root)
+```
+
 
 Redux toolkit and react-redux both are different 
 redux toolkit is the main redux library which is used by many other framework or library eg react , vue , etc
