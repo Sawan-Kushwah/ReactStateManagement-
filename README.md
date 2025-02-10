@@ -3,7 +3,8 @@ Babel take the script file to map source and then convert the jsx to , React.cre
 React.render method (createElement , root) then it inject that js to docs by doing document.createElement('h1')
 
 ``` javascript 
-React jsx -> Map source (map the jsx to converted script) -> Script (this browser will understand) -> This script get inject to Document using React.render(react.createElement , root)
+React jsx -> Map source (map the jsx to converted script) -> Script (this browser will understand)
+-> This script get inject to Document using React.render(react.createElement , root)
 ```
 
 
