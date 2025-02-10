@@ -1,3 +1,8 @@
+Babel is used to transpiler the modern javascript to old browser javascript which can be understood by every browser so that developer can use the modern day javascript efficiently 
+Babel take the script file to map source and then convert the jsx to , React.createElement() this convert this to Tree like structure then this structure has been taken by , 
+React.render method (createElement , root) then it inject that js to docs by doing document.createElement('h1')
+
+
 Redux toolkit and react-redux both are different 
 redux toolkit is the main redux library which is used by many other framework or library eg react , vue , etc
 we can add many more state in this state this is a single source or truth 
@@ -130,5 +135,7 @@ inputField.addEventListener('input', debouncing(() => fetchData(url), 1000)); //
 inputField.addEventListenor('input' , () => fetchData(url)) // ❌
 
 ```
+
+
 
 
