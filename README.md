@@ -1,5 +1,10 @@
 Redux toolkit and react-redux both are different 
 redux toolkit is the main redux library which is used by many other framework or library eg react , vue , etc
+we can add many more state in this state this is a single source or truth 
+all the state is updated by using the reducer , we can create different slice for different state
+same work can web done in react use context but there is a catch we don't able to add the funtion defination (eg addTodo = () =>{}) 
+the defination has been written on the app.jsx , where we write provider value = {addTodo , , ,} and we write the defination for it this may change the state many times
+we have to create the different context for different state
 
 react-redux help us to create a bridge between the react and redux 
 ``` javascript
@@ -15,7 +20,7 @@ dispatch(addTodo("redux ho gaya"))
 Steps to set up redux 
 
 ``` javascript
-// Step 1 : Create a store
+// Step 1 : Create a store in app or store or redux folder as store.js
 import { configureStore } from "@reduxjs/toolkit";
 import { reducers } from "../Feature/Todo/TodoSlice";
 
@@ -25,11 +30,7 @@ export const Store = configureStore({
  _________________________________
 
 // Step 2 : Create a slice with reducer ( they are the funtion )
-    // we can add many more state in this state this is a single source or truth 
-    // all the state is updated by using the reducer , we can create different slice for different state
-    // same work can web done in react use context but there is a catch we don't able to add the funtion defination (eg addTodo = () =>{}) 
-    // the defination has been written on the app.jsx , where we write provider value = {addTodo , , ,} and we write the defination for it this may change the state many times
-    // we have to create the different context for different state
+// Here we can create more slices as per requirement and export everything to store 
 
 import { createSlice, nanoid } from "@reduxjs/toolkit";
 const initialState = {
@@ -52,8 +53,6 @@ export const TodoSlice = createSlice({
         },
     }
 })
-
-// Here we can create more slices as per requirement and export everything to store 
 
 export const { addTodo, removeTodo } = TodoSlice.actions;
 
@@ -84,8 +83,9 @@ Lazy load : we do lazy load to load the page when user intract with that page be
 it basically split the code and render when the user intract with it 
 ``` Javascript
 
-const About = lazy(() => import('./component/About'))
+const About = lazy(() => import('./component/About')) // Where browser router is there main.js
 
+// aap.jsx or layout.jsx
 <Suspence fallback={<h1> loading... </h1>}
   <Outlet/>
 </Suspence>
