@@ -103,3 +103,32 @@ Now let say we have to lazy load some data or function how we will do ?
 Here the data will be load when user click on this button 
 ``` module.todos ``` where todos is the key in the data this is done in order to optimize and seperate the data from the | main thread | to background thread 
 
+___________________________
+Debouncing is a concept of calling the api after some delay , use case -> when is type something calling api for every change in input field may lead us to reach the api limit 
+this should not be there !! , we have to call the api when user stop for sometime 
+
+``` javascript
+
+async function fetchData(url) {
+    let res = await fetch(url);
+    let data = await res.json();
+    return data;
+}
+
+function debouncing(func, delay) {
+    let time;
+    return function (...args) {
+        clearTimeout(time);
+        time = setTimeout(() => func(...args), delay);  
+    };
+}
+
+const inputField = document.getElementById('inputField');  
+const url = "https://api.example.com/data"; // Replace with the actual API URL
+
+inputField.addEventListener('input', debouncing(() => fetchData(url), 1000)); // ✅ 
+inputField.addEventListenor('input' , () => fetchData(url)) // ❌
+
+```
+
+
