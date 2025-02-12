@@ -1,4 +1,7 @@
 import './App.css'
+// react redux bridge h react-redux-toolkit and react , 
+// With dispatch we can send the data , and receive as action.payload
+// With useSelector we can get the current state data
 import { useDispatch, useSelector } from 'react-redux'
 import { addTodo, removeTodo } from './Feature/Todo/TodoSlice';
 import { useState } from 'react';
