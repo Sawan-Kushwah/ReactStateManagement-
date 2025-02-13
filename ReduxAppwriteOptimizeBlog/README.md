@@ -144,7 +144,7 @@ import { selectProductById } from '../features/products/productSlice';
 
 const ProductManager = () => {
   const { data: products = [], isLoading } = useGetProductsQuery();
-  const [addProduct] = useAddProductMutation();
+  const [addProduct] = useAddProductMutation(); // they give us funtion and data in an array 
   const [updateProduct] = useUpdateProductMutation();
   const [deleteProduct] = useDeleteProductMutation();
   const [title, setTitle] = useState('');
