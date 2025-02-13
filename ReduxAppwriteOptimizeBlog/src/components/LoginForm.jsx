@@ -1,6 +1,5 @@
-import authservice from '../appwrite/auth'
-import { login as storeLogin } from '../redux/authSlice'
-import { useDispatch } from 'react-redux'
+import { getUserData, loginUser } from '../redux/authSlice'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { Logo, Input, Button } from './index'
@@ -10,20 +9,18 @@ import { useState } from 'react'
 const LoginForm = () => {
     const [error, setError] = useState("");
     const dispatch = useDispatch();
+    const loginStatus = useSelector(getUserData);
     const navigate = useNavigate();
 
 
     const { register, handleSubmit } = useForm();
 
     const login = async (data) => {
-        // console.log("Login form data : ", data);
         setError("")
         try {
-            const session = await authservice.login(data);
-            if (session) {
-                const userData = await authservice.getCurrentUser();
-                if (userData) dispatch(storeLogin(userData));
-                navigate("/")
+            dispatch(loginUser(data));
+            if (loginStatus.isLoggedIn) {
+                navigate('/')
             }
         } catch (error) {
             setError(error)

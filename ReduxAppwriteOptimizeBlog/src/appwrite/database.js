@@ -27,6 +27,7 @@ export class DatabaseServices {
             )
         } catch (error) {
             console.log("Appwrite service :: Create post error :: ", error);
+            throw error;
         }
     }
 
@@ -63,6 +64,7 @@ export class DatabaseServices {
             )
         } catch (error) {
             console.log("Appwrite service :: update post error :: ", error);
+            throw error;
         }
     }
 
@@ -75,6 +77,7 @@ export class DatabaseServices {
             )
         } catch (error) {
             console.log("Appwrite service :: delete post error :: ", error);
+            throw error;
         }
     }
 
@@ -87,6 +90,7 @@ export class DatabaseServices {
             )
         } catch (error) {
             console.log("Appwrite service :: get all post error :: ", error);
+            throw error;
         }
     }
 
@@ -100,6 +104,7 @@ export class DatabaseServices {
             )
         } catch (error) {
             console.log("Appwrite service :: get post error :: ", error);
+            throw error;
         }
     }
 

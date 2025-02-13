@@ -46,17 +46,18 @@ const PostFrom = ({ post }) => {
         } else {
             const file = data.image[0] ? await uploadService.uploadFile(data.image[0]) : null;
 
-            data.featuredImage = file ? file.$id : null;
+            if (file) {
+                data.featuredImage = file.$id;
 
-            const dbpost = await service.createPost({
-                ...data,
-                userId: userData.$id
-            })
+                const dbpost = await service.createPost({
+                    ...data,
+                    userId: userData.$id
+                })
+                dispatch(addPost(dbpost)) // add post to redux
 
 
-            dispatch(addPost(dbpost)) // add post to redux
-
-            if (dbpost) navigate(`/post/${dbpost.slug}/${dbpost.$id}`)
+                if (dbpost) navigate(`/post/${dbpost.slug}/${dbpost.$id}`)
+            }
         }
     }
 
@@ -133,7 +134,6 @@ const PostFrom = ({ post }) => {
                 </Button>
             </div>
         </form>
-
     )
 }
 

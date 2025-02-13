@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Container, PostCard } from '../components';
 import { fetchAllPost, getAllPost, getError, getLoadingState } from '../redux/postSlice';
 import { useEffect } from 'react';
+import { getUserData } from '../redux/authSlice';
 
 
 const Allpost = () => {
@@ -9,12 +10,13 @@ const Allpost = () => {
     const storePost = useSelector(getAllPost);
     const postLoading = useSelector(getLoadingState);
     const errorInFetching = useSelector(getError);
+    const loginStatus = useSelector(getUserData)
 
     useEffect(() => {
-        if (storePost.length === 0) {
+        if (storePost.length === 0 && loginStatus.isLoggedIn) {
             dispatch(fetchAllPost());
         }
-    }, [dispatch, storePost.length])
+    }, [dispatch, storePost.length, loginStatus])
 
     return (
 

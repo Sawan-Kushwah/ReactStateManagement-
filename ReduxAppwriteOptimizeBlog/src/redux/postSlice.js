@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSelector, createSlice } from "@reduxjs/toolkit";
 import service from "../appwrite/database";
+import uploadService from "../appwrite/upload";
 
 export const fetchAllPost = createAsyncThunk('post/fetchAllPost', async (_, { rejectWithValue }) => {
     try {
@@ -10,9 +11,10 @@ export const fetchAllPost = createAsyncThunk('post/fetchAllPost', async (_, { re
     }
 });
 
-export const deletePostDb = createAsyncThunk('post/deletePost', async (id, { rejectWithValue }) => {
+export const deletePostDb = createAsyncThunk('post/deletePost', async ({ id, featuredImageId }, { rejectWithValue }) => {
     try {
         await service.deletePost(id);
+        await uploadService.deleteFile(featuredImageId)
         return id;
     } catch (err) {
         console.log("delete post error : ", err);
@@ -76,4 +78,5 @@ export const getError = createSelector([state => state.post?.error], err => err)
 export const getAllPost = createSelector([selectPostList], posts => posts)
 
 export const { addPost, updatePost } = postSlice.actions;
+
 export default postSlice.reducer;

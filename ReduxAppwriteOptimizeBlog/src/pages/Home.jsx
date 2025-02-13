@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import { Container } from '../components';
 
 const Home = () => {
-    const isLoggedIn = useSelector(state => state.auth.isLoggedIn)
+    const isLoggedIn = useSelector(state => state.auth.isLoggedIn) // react redux
 
     if (!isLoggedIn) {
         return (

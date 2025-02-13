@@ -1,17 +1,17 @@
-import { logout } from "../../redux/authSlice"
-import authservice from "../../appwrite/auth"
-import { useDispatch } from "react-redux"
+import { getUserData, logoutUser } from "../../redux/authSlice"
+import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom";
 
 
 
 const LogoutButton = () => {
     const disptach = useDispatch();
+    const loginStatus = useSelector(getUserData);
     const navigate = useNavigate();
 
     const handleLogout = async () => {
-        const response = await authservice.logout().then(() => disptach(logout()));
-        if (response) {
+        disptach(logoutUser());
+        if (!loginStatus.isLoggedIn) {
             navigate('/')
         }
     }

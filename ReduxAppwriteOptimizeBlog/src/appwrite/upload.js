@@ -20,6 +20,7 @@ export class UploadService {
             )
         } catch (error) {
             console.log("Upload service :: upload file error :: ", error);
+            throw error;
         }
     }
 
@@ -31,6 +32,7 @@ export class UploadService {
             )
         } catch (error) {
             console.log("Upload service :: delete file error :: ", error);
+            throw error;
         }
     }
 
@@ -42,6 +44,7 @@ export class UploadService {
             )
         } catch (error) {
             console.log("Upload service ::  file preview error :: ", error);
+            throw error;
         }
     }
 }

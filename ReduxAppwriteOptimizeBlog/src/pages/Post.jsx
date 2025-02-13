@@ -11,7 +11,7 @@ const Post = () => {
     // const post = useSelector(state => console.log(state.post.postList?.documents.find(post => post.$id === slug.slug)))
     const post = useSelector(state => getPost(slug.id)(state))
     const userdata = useSelector(state => state.auth.userData)
-    let loading = useSelector(getLoadingState)
+    const loading = useSelector(getLoadingState)
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -22,7 +22,7 @@ const Post = () => {
     const isAuthor = post && userdata ? post.userId === userdata.$id : false;
 
     const deletePost = async () => {
-        dispatch(deletePostDb(slug.id));
+        dispatch(deletePostDb({ id: slug.id, featuredImageId: post.featuredImage }));
         if (!loading) {
             navigate('/')
         }

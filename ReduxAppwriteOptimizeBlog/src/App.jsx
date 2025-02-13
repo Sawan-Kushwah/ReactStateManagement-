@@ -1,24 +1,22 @@
 
-import { Suspense, useEffect, useState } from 'react'
+import { Suspense, useEffect } from 'react'
 import './App.css'
-import { useDispatch } from 'react-redux';
-import { login } from './redux/authSlice';
-import authservice from './appwrite/auth';
+import { useDispatch, useSelector } from 'react-redux';
 import { Outlet } from 'react-router-dom';
 import { Header, Footer } from './components';
+import { getUserData, setCurrentUser } from './redux/authSlice';
 function App() {
 
-  const [loading, setloading] = useState(true);
+  const loginStatus = useSelector(getUserData)
   const dispatch = useDispatch();
 
   useEffect(() => {
-    authservice.getCurrentUser().
-      then((userData) => (userData === undefined ? console.log("no user found") : dispatch(login(userData))))
-      .catch(err => console.log("App jsx :: error ", err))
-      .finally(() => setloading(false));
+    if (loginStatus.userData) {
+      dispatch(setCurrentUser())
+    }
   }, [])
 
-  return !loading ? (
+  return (
     <div >
       <Header />
       <Suspense fallback={<h1 className='text-green-600'>Page Loading......</h1>}>
@@ -26,7 +24,7 @@ function App() {
       </Suspense>
       <Footer />
     </div>
-  ) : null
+  )
 }
 
 export default App

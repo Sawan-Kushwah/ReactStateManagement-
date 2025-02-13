@@ -1,31 +1,26 @@
 import { useState } from 'react'
-import authservice from '../appwrite/auth'
-import { useDispatch } from 'react-redux'
-import { login as authLogin } from '../redux/authSlice'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { Logo, Input, Button } from './index'
 import { useForm } from 'react-hook-form'
+import { createUser, getUserData } from '../redux/authSlice'
 
 
 
 const SignUp = () => {
   const [error, setError] = useState('')
   const dispatch = useDispatch();
+  const loginStatus = useSelector(getUserData);
   const navigate = useNavigate();
 
   const { register, handleSubmit } = useForm()
 
   const createAccount = async (data) => {
-    console.log("Signup form data : ", data)
     setError('')
     try {
-      const session = await authservice.createUser(data)
-      // console.log("ye rha tumhara session  : ", session)
-      if (session) {
-        const userData = await authservice.getCurrentUser();
-        console.log("ye rha user data : ", userData)
-        if (userData) dispatch(authLogin(userData))
-        navigate('/');
+      dispatch(createUser(data));
+      if (loginStatus.isLoggedIn) {
+        navigate('/')
       }
     } catch (error) {
       setError(error);
