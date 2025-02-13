@@ -1,9 +1,13 @@
 #Key take away from this project !!
+
 => Use RTK for fetching the data as it provide us caching and optimistic update in UI
+
 => Use Redux to avoide Prop drilling in every component and manage the multiple state in much better way 
+
 => Use Selector for avoiding unnecessary re rendering even when there is no change in state it get re render in useSelector, 
 if selected state (eg we are selecting active status post and we have added inactive status post then it
 doesn't get re render as no change in state occur 
+
 Note : selector is only useful when you are filtering , shorting , selecting , not benifical when you just want to see state 
 
 ``` javascript
