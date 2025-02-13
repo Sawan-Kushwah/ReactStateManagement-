@@ -143,7 +143,7 @@ import { useSelector } from 'react-redux';
 import { selectProductById } from '../features/products/productSlice';
 
 const ProductManager = () => {
-  const { data: products = [], isLoading } = useGetProductsQuery();
+  const { data: products = [], isLoading } = useGetProductsQuery(); // it give many thing like isLoading , isError , error.error
   const [addProduct] = useAddProductMutation(); // they give us funtion and data in an array 
   const [updateProduct] = useUpdateProductMutation();
   const [deleteProduct] = useDeleteProductMutation();
