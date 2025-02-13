@@ -134,6 +134,8 @@ export const selectProductById = createSelector(
   (products, productId) => products.find((product) => product.id === productId)
 );
 
+____________________________________________________________________________________________________________________________________________________
+
 // src/components/ProductManager.js
 import { useState } from 'react';
 import { useGetProductsQuery, useAddProductMutation, useUpdateProductMutation, useDeleteProductMutation } from '../features/products/productApi';
